@@ -91,7 +91,7 @@ function colorChange() {
   let g = Math.floor(Math.random() * 256);
   let b = Math.floor(Math.random() * 256);
   
-  //creating a variable that stores strings and number to get a useable rgb code (i.e. rgb(14,100,86) rgb)
+  //creating a variable that stores strings and 3 numbers to get a useable rgb code (i.e. rgb(14,100,86))
   var backgroundCo = "rgb(" + r + "," + g + "," + b + ")";
   //return the variable with the rgb code
   return backgroundCo;
@@ -100,30 +100,30 @@ function colorChange() {
 
 
 //creating a function that displays the object
-function printQuote (){
-//storing the function (that creats a random quote) in variable rQuote
-const rQuote = getRandomQuote();
-//creating a variable that stores a template literal,with placeholder that creates the quote and source paragraph
-let displayHTMLItems =`<p class ="quote">${rQuote.quote}</p>
-              <p class ="source">${rQuote.source}`;
+function printQuote() {
+  //storing the function (that creats a random quote) in variable rQuote
+  const rQuote = getRandomQuote();
+  //creating a variable that stores a template literal,with placeholder that creates the quote and source paragraph
+  let displayHTMLItems = `<p class ="quote">${rQuote.quote}</p>
+                        <p class ="source">${rQuote.source}`;
 
-//if the quote contains a citation, it will create a span
-if (rQuote.citation) {
-  displayHTMLItems +=`<span class="citation">${rQuote.citation}</span>`
-}
+    //if the quote contains a citation, it will create a span
+    if (rQuote.citation) {
+    displayHTMLItems += `<span class="citation">${rQuote.citation}</span>`
+    }
 
-//if the quote contains a year, it will create a span
-if (rQuote.year) {
-  displayHTMLItems +=`<span class="year">${rQuote.year}</span>`
-}
+    //if the quote contains a year, it will create a span
+    if (rQuote.year) {
+    displayHTMLItems += `<span class="year">${rQuote.year}</span>`
+    }
 
-//if the quote contains tags, it will create a span
-if (rQuote.tags) {
-  displayHTMLItems +=`<span class="tags"></br>${rQuote.tags}</span>`
-}; //if loop ends
+    //if the quote contains tags, it will create a span
+    if (rQuote.tags) {
+    displayHTMLItems += `<span class="tags"></br>${rQuote.tags}</span>`
+    }; //ending the if loop
 
-//create a variable that stores the element in the ID="quote-box"
-let quoteDiv = document.getElementById("quote-box");
+  //create a variable that stores the element of the ID="quote-box"
+  let quoteDiv = document.getElementById("quote-box");
 
 //set innerHTML property of quoteDiv to the string literal above 
 quoteDiv.innerHTML = displayHTMLItems;
@@ -133,7 +133,7 @@ document.body.style.backgroundColor = colorChange();
 };
 
 //creating a function that runs the printQuote function
-function refresher(){
+function refresher() {
   printQuote();
 };
 
