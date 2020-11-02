@@ -10,6 +10,7 @@ project 1 - A Random Quote Generator
 /*** 
  * `quotes` array 
 ***/
+
 // created 5 'full'-quote objects and 3 with missing elements
 const quotes = [
   {
@@ -17,7 +18,7 @@ const quotes = [
     source:"Charles Darwin",
     citation:"Origin of the Species",
     year: 1859,
-    tags: "Science"
+    tags: "Science, Biology"
   },
   {
     quote:"Niemand hat die Absicht, eine Mauer zu errichten!" ,
@@ -38,7 +39,7 @@ const quotes = [
     source:"Steve Jobs",
     citation:"'Steve Jobs talks about the Library of Congress'",
     year: 1990,
-    tags: "Motivation, Focus"
+    tags: "Motivation, Focus, Tech"
   },
   {
     quote:"So I express the Republicans are minority, so I have some sympathy towards them." ,
@@ -54,7 +55,7 @@ const quotes = [
   {
     quote:"Be the change that you wish to see in the world." ,
     source:"Mahatma Gandhi",
-    tags: "Motivation, Inspiration"
+    tags: "Motivation, Inspiration, Positivity"
   },
   {
     quote:"If you want to know what a man's like, take a good look at how he treats his inferiors, not his equals." ,
@@ -68,8 +69,7 @@ const quotes = [
  * `getRandomQuote` function
 ***/
 
-//random number
-//return object with random number
+
 //building a function thats returns a random quote
 function getRandomQuote () {
 //random number(from 1 to 8, because 8 objects) is stored in variable randomNumber
@@ -83,39 +83,62 @@ function getRandomQuote () {
 /***
  * `printQuote` function
 ***/
+//creating the colorChange function
+function colorChange() {
+
+  //creating 3 variables with numbers from 1 to 256 within
+  let r = Math.floor(Math.random() * 256);
+  let g = Math.floor(Math.random() * 256);
+  let b = Math.floor(Math.random() * 256);
+  
+  //creating a variable that stores strings and number to get a useable rgb code (i.e. rgb(14,100,86) rgb)
+  var backgroundCo = "rgb(" + r + "," + g + "," + b + ")";
+  //return the variable with the rgb code
+  return backgroundCo;
+};
+
+
 
 //creating a function that displays the object
 function printQuote (){
 //storing the function (that creats a random quote) in variable rQuote
 const rQuote = getRandomQuote();
 //creating a variable that stores a template literal,with placeholder that creates the quote and source paragraph
-let displayHTMLItems =` <p class ="quote">${rQuote.quote}</p>
+let displayHTMLItems =`<p class ="quote">${rQuote.quote}</p>
               <p class ="source">${rQuote.source}`;
+
 //if the quote contains a citation, it will create a span
 if (rQuote.citation) {
   displayHTMLItems +=`<span class="citation">${rQuote.citation}</span>`
 }
-//if the quote contains a year, it will create a span
 
+//if the quote contains a year, it will create a span
 if (rQuote.year) {
   displayHTMLItems +=`<span class="year">${rQuote.year}</span>`
 }
-//if the quote contains tags, it will create a span
 
+//if the quote contains tags, it will create a span
 if (rQuote.tags) {
   displayHTMLItems +=`<span class="tags"></br>${rQuote.tags}</span>`
-}; // if loop ends
-// create a variable that acceses and stores what is in the ID="quote-box"
-let quoteDiv = document.getElementById("quote-box");
-// set innerHTML property of quoteDiv to the string literal above 
-quoteDiv.innerHTML = displayHTMLItems;
-}  
+}; //if loop ends
 
+//create a variable that stores the element in the ID="quote-box"
+let quoteDiv = document.getElementById("quote-box");
+
+//set innerHTML property of quoteDiv to the string literal above 
+quoteDiv.innerHTML = displayHTMLItems;
+
+//setting the background color to the rgb code created by colorChange function
+document.body.style.backgroundColor = colorChange();
+};
+
+//creating a function that runs the printQuote function
 function refresher(){
   printQuote();
 };
 
-setInterval(refresher, 5000);
+// the setinterval method calls the refresher function every 10 sec
+setInterval(refresher, 10000);
 
 
 /***
